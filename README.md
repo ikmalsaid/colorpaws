@@ -90,11 +90,8 @@ logs/
 
 ## 🛠️ Installation
 
-1. Add `colorpaws.py` to your project
-2. Install the required dependency:
-
 ```bash
-pip install colorama
+pip install colorpaws
 ```
 
 ## 🔍 Advanced Features

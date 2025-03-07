@@ -35,7 +35,7 @@ class ColorFormatter(logging.Formatter):
         record.levelname = original_levelname
         return formatted_message
 
-def setup_logger(name: str, log_on: bool = False, log_to: str = None):
+def configure(name: str, log_on: bool = False, log_to: str = None):
     """
     Setup and return a configured logger instance.
 

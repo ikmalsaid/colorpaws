@@ -1,8 +1,8 @@
-# 🐾 ColorPaws
+# colorpaws
 
 A powerful, flexible logging component that enhances Python's built-in logging with colored output and automated file organization. Perfect for both console applications and services requiring detailed logging.
 
-## 🌟 Key Features
+## Key Features
 
 - 🎨 Colored console output with intuitive level-based colors
 - 🖥️ Cross-platform support (Windows and Unix-like systems)
@@ -11,7 +11,7 @@ A powerful, flexible logging component that enhances Python's built-in logging w
 - ⚙️ Configurable dual-output (console and/or file)
 - 🕒 Timestamp-based log file naming
 
-## 🎨 Color Scheme
+## Color Scheme
 
 | Log Level | Color    | Use Case |
 |-----------|----------|----------|
@@ -21,7 +21,7 @@ A powerful, flexible logging component that enhances Python's built-in logging w
 | ERROR     | Red      | Error messages for serious problems |
 | CRITICAL  | Magenta  | Critical failures requiring immediate attention |
 
-## 📘 Usage Examples
+## Usage Examples
 
 ### Basic Console Logging
 
@@ -66,7 +66,7 @@ except Exception as e:
     logger.debug("Stack trace:", exc_info=True)
 ```
 
-## 📁 Log File Organization
+## Log File Organization
 
 The component automatically organizes log files by date:
 
@@ -78,7 +78,7 @@ logs/
 │   └── ...
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### configure() Parameters
 
@@ -88,13 +88,13 @@ logs/
 | log_on      | bool    | False   | Enable/disable logging |
 | log_to      | str     | None    | Log file directory path |
 
-## 🛠️ Installation
+## Installation
 
 ```bash
 pip install colorpaws
 ```
 
-## 🔍 Advanced Features
+## Advanced Features
 
 ### Handler Management
 - Automatic prevention of duplicate handlers
@@ -109,7 +109,7 @@ pip install colorpaws
 ### Format Customization
 Default format: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
 
-## 💡 Best Practices
+## Best Practices
 
 1. **Logger Naming**
    ```python
@@ -134,7 +134,7 @@ Default format: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
        logger.error("Operation failed", exc_info=True)
    ```
 
-## ⚠️ Important Notes
+## Important Notes
 
 - Log files are created with unique timestamps to prevent overwrites
 - Console colors automatically adjust based on terminal capabilities
@@ -142,10 +142,10 @@ Default format: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
 - Logger instances are singleton per name
 - All timestamps use local system time
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to submit issues and enhancement requests!
 
-## 📄 License
+## License
 
-This component is available under the MIT License.
+See [LICENSE](LICENSE) for details.

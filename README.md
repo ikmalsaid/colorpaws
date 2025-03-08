@@ -26,10 +26,10 @@ A powerful, flexible logging component that enhances Python's built-in logging w
 ### Basic Console Logging
 
 ```python
-from colorpaws import setup_logger
+from colorpaws import configure
 
 # Initialize with console output only
-logger = setup_logger(
+logger = configure(
     name="MyApp",
     log_on=True
 )
@@ -43,10 +43,10 @@ logger.warning("Resource usage above 80%")
 ### Advanced File and Console Logging
 
 ```python
-from colorpaws import setup_logger
+from colorpaws import configure
 
 # Initialize with both console and file logging
-logger = setup_logger(
+logger = configure(
 name="MyApp",
 log_on=True,
 log_to="logs"
@@ -80,7 +80,7 @@ logs/
 
 ## ⚙️ Configuration
 
-### setup_logger() Parameters
+### configure() Parameters
 
 | Parameter    | Type    | Default | Description |
 |-------------|---------|---------|-------------|
@@ -114,7 +114,7 @@ Default format: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
 1. **Logger Naming**
    ```python
    # Use meaningful, hierarchical names
-   logger = setup_logger("MyApp.SubModule")
+   logger = configure("MyApp.SubModule")
    ```
 
 2. **Log Level Usage**

@@ -1,92 +1,6 @@
 # colorpaws
 
-A powerful, flexible logging component that enhances Python's built-in logging with colored output and automated file organization. Perfect for both console applications and services requiring detailed logging.
-
-## Key Features
-
-- 🎨 Colored console output with intuitive level-based colors
-- 🖥️ Cross-platform support (Windows and Unix-like systems)
-- 📁 Automatic date-based log file organization
-- 🔄 Smart handler management (no duplicates)
-- ⚙️ Configurable dual-output (console and/or file)
-- 🕒 Timestamp-based log file naming
-
-## Color Scheme
-
-| Log Level | Color    | Use Case |
-|-----------|----------|----------|
-| DEBUG     | Blue     | Detailed information for debugging |
-| INFO      | Green    | General operational messages |
-| WARNING   | Yellow   | Warning messages for potential issues |
-| ERROR     | Red      | Error messages for serious problems |
-| CRITICAL  | Magenta  | Critical failures requiring immediate attention |
-
-## Usage Examples
-
-### Basic Console Logging
-
-```python
-from colorpaws import configure
-
-# Initialize with console output only
-logger = configure(
-    name="MyApp",
-    log_on=True
-)
-
-# Example usage
-logger.info("Application started")
-logger.debug("Configuration loaded successfully")
-logger.warning("Resource usage above 80%")
-```
-
-### Advanced File and Console Logging
-
-```python
-from colorpaws import configure
-
-# Initialize with both console and file logging
-logger = configure(
-name="MyApp",
-log_on=True,
-log_to="logs"
-)
-
-# Comprehensive logging example
-try:
-    # Your code here
-    logger.info("Processing started")
-    logger.debug("Loading configuration...")
-
-    # Simulate an error condition
-    raise ValueError("Invalid input detected")
-
-except Exception as e:
-    logger.error(f"Process failed: {str(e)}")
-    logger.debug("Stack trace:", exc_info=True)
-```
-
-## Log File Organization
-
-The component automatically organizes log files by date:
-
-```
-logs/
-├── 2024-01-01/
-│   ├── 20240101_12000000_MyApp.log
-│   ├── 20240101_12000001_MyApp.log
-│   └── ...
-```
-
-## Configuration
-
-### configure() Parameters
-
-| Parameter    | Type    | Default | Description |
-|-------------|---------|---------|-------------|
-| name        | str     | Required| Logger instance name |
-| log_on      | bool    | False   | Enable/disable logging |
-| log_to      | str     | None    | Log file directory path |
+A powerful, flexible logging component that enhances Python's built-in logging with colored output and automated file organization.
 
 ## Installation
 
@@ -94,57 +8,117 @@ logs/
 pip install colorpaws
 ```
 
-## Advanced Features
+## Key Features
 
-### Handler Management
-- Automatic prevention of duplicate handlers
-- Smart console color detection
-- Windows-specific color handling via colorama
+- 🎨 **Console Output**
+  - Colored logging with level-based colors
+  - Cross-platform support (Windows/Unix)
+  - Smart color detection and handling
+- 📁 **File Management**
+  - Automatic date-based organization
+  - Timestamp-based unique files
+  - No duplicate handlers
+- ⚙️ **Configuration**
+  - Dual output (console and/or file)
+  - Customizable log formats
+  - Singleton loggers per name
 
-### Log File Naming
-- Timestamp-based unique file names
-- Date-based directory structure
-- Append mode for continuous logging
+## Usage
 
-### Format Customization
-Default format: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
+### Basic Console Logging
+
+```python
+from colorpaws import configure
+
+# Initialize (console only)
+logger = configure(
+    name="MyApp",         # Logger instance name
+    log_on=True,         # Enable logging
+    log_to=None          # No file output
+)
+
+# Log messages
+logger.debug("Debug information")     # Blue - Detailed debugging
+logger.info("Operation complete")     # Green - General information
+logger.warning("Low memory")          # Yellow - Potential issues
+logger.error("Process failed")        # Red - Serious problems
+logger.critical("System crash")       # Magenta - Critical failures
+```
+
+### File and Console Logging
+
+```python
+# Initialize (console + file)
+logger = configure(
+    name="MyApp",        # Logger instance name
+    log_on=True,         # Enable logging
+    log_to="logs"        # Log directory path
+)
+
+# Example with exception handling
+try:
+    # Your code here
+    logger.info("Processing started")
+    logger.debug("Loading config...")
+    raise ValueError("Invalid input")
+
+except Exception as e:
+    logger.error(
+        "Process failed",
+        exc_info=True    # Include stack trace
+    )
+```
+
+### Log File Structure
+
+```
+logs/
+└── YYYY-MM-DD/
+    ├── YYYYMMDD_HHMMSS_MyApp.log
+    ├── YYYYMMDD_HHMMSS_MyApp.log
+    └── ...
+```
+
+## Configuration
+
+### Parameters
+| Parameter | Type  | Default | Description |
+|-----------|-------|---------|-------------|
+| name      | str   | Required| Logger name |
+| log_on    | bool  | False   | Enable logging |
+| log_to    | str   | None    | Log directory |
+
+### Log Colors
+| Level    | Color   | Usage |
+|----------|---------|-------|
+| DEBUG    | Blue    | Detailed debugging |
+| INFO     | Green   | General messages |
+| WARNING  | Yellow  | Potential issues |
+| ERROR    | Red     | Serious problems |
+| CRITICAL | Magenta | Critical failures |
+
+### Log Format
+Default: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
 
 ## Best Practices
 
-1. **Logger Naming**
-   ```python
-   # Use meaningful, hierarchical names
-   logger = configure("MyApp.SubModule")
-   ```
+```python
+# Hierarchical naming
+logger = configure("MyApp.SubModule")
 
-2. **Log Level Usage**
-   ```python
-   logger.debug("Detailed debugging information")
-   logger.info("General operational messages")
-   logger.warning("Warning messages")
-   logger.error("Error messages")
-   logger.critical("Critical failures")
-   ```
+# Proper level usage
+logger.debug("Detailed debug info")    # Development
+logger.info("Operation status")        # General
+logger.warning("Potential issue")      # Caution
+logger.error("Operation failed")       # Problems
+logger.critical("System failure")      # Emergencies
 
-3. **Exception Handling**
-   ```python
-   try:
-       # Your code
-   except Exception as e:
-       logger.error("Operation failed", exc_info=True)
-   ```
-
-## Important Notes
-
-- Log files are created with unique timestamps to prevent overwrites
-- Console colors automatically adjust based on terminal capabilities
-- Windows color support is handled transparently
-- Logger instances are singleton per name
-- All timestamps use local system time
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
+# Exception handling
+try:
+    # Your code
+except Exception as e:
+    logger.error("Failed", exc_info=True)
+```
 
 ## License
 

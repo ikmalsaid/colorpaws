@@ -1,4 +1,4 @@
-from src.colorpaws import configure
+from src.colorpaws import ColorPaws
 import time
 
 # This is a basic usage of the ColorPaws logging system
@@ -9,7 +9,7 @@ import time
 
 def test_logging():
     # Create a logger that outputs to both console and file
-    logger = configure(
+    logger = ColorPaws(
         name="test_app",
         log_on=True,
         log_to="logs"  # This will create a logs directory with date-based subdirectories
@@ -28,7 +28,7 @@ def test_logging():
         time.sleep(0.5)  # Add small delay to see messages appear
         
     # Test logger without file output
-    console_logger = configure(
+    console_logger = ColorPaws(
         name="console_only",
         log_on=True
     )

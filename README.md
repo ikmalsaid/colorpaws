@@ -28,12 +28,12 @@ pip install colorpaws
 ### Basic Console Logging
 
 ```python
-from colorpaws import configure
+from colorpaws import ColorPaws
 
 # Initialize (console only)
-logger = configure(
-    name="MyApp",         # Logger instance name
-    log_on=True,         # Enable logging
+logger = ColorPaws(
+    name="MyApp",        # Logger instance name
+    log_on=True,         # Enable/disable logging
     log_to=None          # No file output
 )
 
@@ -49,9 +49,9 @@ logger.critical("System crash")       # Magenta - Critical failures
 
 ```python
 # Initialize (console + file)
-logger = configure(
+logger = ColorPaws(
     name="MyApp",        # Logger instance name
-    log_on=True,         # Enable logging
+    log_on=True,         # Enable/disable logging
     log_to="logs"        # Log directory path
 )
 
@@ -104,7 +104,7 @@ Default: `YYYY-MM-DD HH:MM:SS - LEVEL - Message`
 
 ```python
 # Hierarchical naming
-logger = configure("MyApp.SubModule")
+logger = ColorPaws("MyApp.SubModule")
 
 # Proper level usage
 logger.debug("Detailed debug info")    # Development
